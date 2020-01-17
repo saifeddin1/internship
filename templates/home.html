@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p>
+	{% for entrep in entreprises %}
+		{{ entrep.title }}
+	{% endfor %}
+
+</p>
+<p>
+	
+	{% for person in persons %}
+		{{ person.first_name }}
+		{{ person.last_name }}
+	<br>
+	{% endfor %}
+</p>
+</body>
+</html>
