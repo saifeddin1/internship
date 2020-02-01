@@ -20,4 +20,6 @@ from archivage import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name="home"),
+    path('add_client', views.add_client, name="add_client"),
+    path('add_entreprise', views.add_entreprise, name="add_entreprise"),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -10,11 +11,20 @@ class Entreprise(models.Model):
     cadre = models.CharField(max_length=200)
     rib = models.TextField()
     description = models.TextField()      
-    formation = models.ForeignKey('Formation', on_delete=models.CASCADE)
-    marketing = models.ForeignKey('Marketing', on_delete=models.CASCADE)
-    development = models.ForeignKey('Development', on_delete=models.CASCADE)
+    formation = models.ForeignKey('Formation', on_delete=models.CASCADE, blank=True, default=None, null=True)
+    marketing = models.ForeignKey('Marketing', on_delete=models.CASCADE, blank=True, default=None, null=True)
+    development = models.ForeignKey('Development', on_delete=models.CASCADE, blank=True, default=None, null=True)
+
+    def clean(self):
+        if not(self.formation or self.marketing or self.development):
+            raise ValidationError("Cannot be empy ")
+
+
+
+
 
     def __str__(self):
+
         return self.title
 
 
@@ -25,11 +35,20 @@ class Person(models.Model):
     level = models.CharField(max_length=50)
     address = models.TextField()
     description = models.TextField()      
-    formation = models.ForeignKey('Formation', on_delete=models.CASCADE)
-    marketing = models.ForeignKey('Marketing', on_delete=models.CASCADE)
-    development = models.ForeignKey('Development',on_delete=models.CASCADE)
+    formation = models.ForeignKey('Formation', on_delete=models.CASCADE, blank=True, default=None, null=True)
+    marketing = models.ForeignKey('Marketing', on_delete=models.CASCADE, blank=True, default=None, null=True)
+    development = models.ForeignKey('Development',on_delete=models.CASCADE, blank=True, default=None, null=True)
+
+
+
+
+    def clean(self):
+        if not(self.formation or self.marketing or self.development):
+            raise ValidationError("Cannot be empy ")
+
 
     def __str__(self):
+
         return self.first_name + ' ' + self.last_name
 
 class Formation(models.Model):
@@ -42,8 +61,9 @@ class Formation(models.Model):
     def __str__(self):
         return self.domain
 
+
 class Marketing(models.Model):
-    product = models.CharField(max_length=100)
+    product = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=50)
     duration = models.BigIntegerField()
     marketing_type = models.CharField(max_length=50)
@@ -57,7 +77,7 @@ class Development(models.Model):
     title = models.CharField(max_length=50)
     technology = models.CharField(max_length=50)
     responsable = models.CharField(max_length=100)
-    start_time = models.DateTimeField(auto_now=False, auto_now_add=False)   
+    start_time = models.DateTimeField(auto_now=False,blank=True, auto_now_add=False)   
     duration = models.BigIntegerField()
 
     def __str__(self):

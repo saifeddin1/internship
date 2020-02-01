@@ -1,22 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<p>
-	{% for entrep in entreprises %}
-		{{ entrep.title }}
-	{% endfor %}
-
-</p>
-<p>
+{% extends "base.html" %}
+{% block content %}
 	
-	{% for person in persons %}
-		{{ person.first_name }}
-		{{ person.last_name }}
-	<br>
-	{% endfor %}
-</p>
-</body>
-</html>
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		<h1 class="display-4">Pricing</h1>
+		<h2 class="text-muted">Here are the latest services we provid with the hottest prices !<br>
+		Pick the one that goes with your need !</h2>
+	</div>
+	<div class="container">
+		<div class="card-deck mb-3 text-center">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">Formation</h4>
+				</div>
+				<div class="card-body">
+					<h1 class="card-title pricing-card-title">120 TND <small class="text-muted">/ pkg</small></h1>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>Certified trainings</li>
+						<li>Latest technologies</li>
+						<li>Email support</li>
+						<li>Community access</li>
+					</ul>
+					
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">Development</h4>
+				</div>
+				<div class="card-body">
+					<h2 class="card-title pricing-card-title">125 TND <small class="text-muted">/ mo</small></h2>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>Fast Delivery</li>
+						<li>Latest technologies</li>
+						<li>Free revisions</li>
+						<li>Source code</li>
+					</ul>
+					
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">Marketing</h4>
+				</div>
+				<div class="card-body">
+					<H2 class="card-title pricing-card-title">150 TND <small class="text-muted">/ mo</small></H2>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>Social media</li>
+						<li>Affiliate</li>
+						<li>Video Marketing</li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+
+	
+{% endblock content %}
